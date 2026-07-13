@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Gee Technologies</title>
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet" />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <style>
         /* ===========================
            CSS VARIABLES - LIGHT/DARK MODE
         =========================== */
         :root {
-            /* Dark Mode (Default) */
             --bg-primary: #0a0e17;
             --bg-secondary: #141a26;
             --bg-card: rgba(255, 255, 255, 0.05);
@@ -36,6 +35,7 @@
             --scrollbar-thumb: #1a1a2e;
             --card-border: rgba(255, 255, 255, 0.05);
             --bg-opacity: 1;
+            --logo-brightness: 1;
         }
 
         /* Light Mode */
@@ -60,6 +60,7 @@
             --scrollbar-thumb: #c0c0c0;
             --card-border: rgba(0, 0, 0, 0.06);
             --bg-opacity: 1;
+            --logo-brightness: 0.9;
         }
 
         /* ===========================
@@ -215,47 +216,90 @@
             background: var(--bg-header);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            padding: 15px 0;
+            padding: 0;
             position: sticky;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid var(--border-color);
             transition: background 0.3s ease, border-color 0.3s ease;
+            overflow: hidden;
         }
 
         header .container {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: stretch;
+            padding: 0;
+            min-height: 70px;
         }
 
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-            cursor: pointer;
-            letter-spacing: -0.5px;
+        /* ---- Logo Section - Full Height ---- */
+        .logo-section {
             display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-primary);
-            transition: color 0.3s ease;
+            align-items: stretch;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            position: relative;
+            margin-left: -20px;
+            padding-left: 20px;
         }
 
-        .logo-text span {
-            color: #00b7ff;
+        .logo-img-wrapper {
+            display: flex;
+            align-items: stretch;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
         }
 
-        .logo-img {
-            height: 45px;
+        .logo-img-wrapper img {
+            height: 100%;
             width: auto;
+            max-height: 80px;
             object-fit: contain;
-            border-radius: 8px;
+            display: block;
+            transition: filter 0.3s ease, transform 0.3s ease;
+            filter: brightness(var(--logo-brightness));
+            padding: 4px 0;
+        }
+
+        /* Fading blend effect on the right side only */
+        .logo-img-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 40px;
+            background: linear-gradient(to right, 
+                rgba(10, 14, 23, 0) 0%, 
+                rgba(10, 14, 23, 0.6) 100%
+            );
+            pointer-events: none;
+            transition: background 0.3s ease;
+        }
+
+        [data-theme="light"] .logo-img-wrapper::after {
+            background: linear-gradient(to right, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.6) 100%
+            );
+        }
+
+        /* Logo hover effect */
+        .logo-section:hover .logo-img-wrapper img {
+            transform: scale(1.02);
+            filter: brightness(calc(var(--logo-brightness) + 0.1)) drop-shadow(0 4px 12px rgba(0,183,255,0.15));
         }
 
         .nav-right {
             display: flex;
             align-items: center;
             gap: 20px;
+            padding: 0 20px;
+            flex-shrink: 0;
         }
 
         nav {
@@ -638,7 +682,7 @@
         }
 
         /* ===========================
-           LIGHTBOX / IMAGE POPUP
+           LIGHTBOX / IMAGE POPUP (for Logo)
         =========================== */
         .lightbox {
             display: none;
@@ -1511,10 +1555,18 @@
             }
             .nav-right {
                 gap: 15px;
+                padding: 0 15px;
             }
             .user-status {
                 flex-wrap: wrap;
                 justify-content: center;
+            }
+            .logo-section {
+                margin-left: -15px;
+                padding-left: 15px;
+            }
+            .logo-img-wrapper img {
+                max-height: 60px;
             }
             .hero {
                 grid-template-columns: 1fr;
@@ -1571,17 +1623,21 @@
             .category-filter {
                 justify-content: center;
             }
-            .logo-img {
-                height: 35px;
-            }
-            .logo-text {
-                font-size: 18px;
-            }
             .home-page::before {
                 background-attachment: scroll;
             }
             .quote-modal-content .form-row {
                 grid-template-columns: 1fr;
+            }
+            .lightbox .close-lightbox {
+                top: 20px;
+                right: 20px;
+                font-size: 30px;
+            }
+            .lightbox .lightbox-caption {
+                font-size: 14px;
+                padding: 8px 16px;
+                bottom: 20px;
             }
         }
 
@@ -1603,11 +1659,21 @@
             .search-bar input {
                 min-width: 100%;
             }
-            .logo-img {
-                height: 28px;
+            .logo-img-wrapper img {
+                max-height: 50px;
             }
-            .logo-text {
-                font-size: 15px;
+            .logo-section {
+                margin-left: -10px;
+                padding-left: 10px;
+            }
+            .theme-toggle {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+            .product-card .info .thumbnails img {
+                width: 40px;
+                height: 40px;
             }
             .lightbox .close-lightbox {
                 top: 20px;
@@ -1618,18 +1684,6 @@
                 font-size: 14px;
                 padding: 8px 16px;
                 bottom: 20px;
-            }
-            .quote-modal-content .form-row {
-                grid-template-columns: 1fr;
-            }
-            .theme-toggle {
-                width: 36px;
-                height: 36px;
-                font-size: 16px;
-            }
-            .product-card .info .thumbnails img {
-                width: 40px;
-                height: 40px;
             }
         }
 
@@ -1653,6 +1707,9 @@
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
             }
+            .logo-img-wrapper img {
+                max-height: 65px;
+            }
         }
     </style>
 </head>
@@ -1663,12 +1720,15 @@
     =========================== -->
     <header>
         <div class="container">
-            <div class="logo" onclick="showPage('home')">
-                <span class="logo-text">The Gee <span>Technologies</span></span>
+            <!-- Logo Section - Full Height ONLY (No Text) -->
+            <div class="logo-section" onclick="showPage('home')" title="Click to go home">
+                <div class="logo-img-wrapper">
+                    <img src="https://i.ibb.co/vxtCLqgC/logo.jpg" alt="The Gee Technologies Logo" id="headerLogo" />
+                </div>
             </div>
 
             <div class="nav-right">
-                <div class="menu-btn" onclick="document.getElementById('navbar').classList.toggle('active')">
+                <div class="menu-btn" onclick="toggleMenu()">
                     <i class="fa-solid fa-bars"></i>
                 </div>
 
@@ -1692,20 +1752,17 @@
                     <span class="sun-icon"><i class="fas fa-sun"></i></span>
                     <span class="moon-icon"><i class="fas fa-moon"></i></span>
                 </button>
-
-                <!-- Logo Image - Top Right -->
-                <img src="logo image.jpeg" alt="The Gee Technologies" class="logo-img" onerror="this.style.display='none'">
             </div>
         </div>
     </header>
 
     <!-- ===========================
-    LIGHTBOX - Image Popup
+    LIGHTBOX - Image Popup (for Logo)
     =========================== -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
-        <img id="lightboxImage" src="" alt="Product Image">
-        <div class="lightbox-caption" id="lightboxCaption">Product Name</div>
+        <img id="lightboxImage" src="" alt="Enlarged Image">
+        <div class="lightbox-caption" id="lightboxCaption">The Gee Technologies</div>
     </div>
 
     <!-- ===========================
@@ -2036,6 +2093,35 @@
     =========================== -->
     <script>
         // ===========================
+        // MOBILE MENU TOGGLE
+        // ===========================
+        function toggleMenu() {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('active');
+        }
+
+        // Close menu when clicking a nav link (on mobile)
+        document.querySelectorAll('#navbar a').forEach(link => {
+            link.addEventListener('click', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.innerWidth <= 768) {
+                    navbar.classList.remove('active');
+                }
+            });
+        });
+
+        // Close menu when clicking outside (on mobile)
+        document.addEventListener('click', function(event) {
+            const navbar = document.getElementById('navbar');
+            const menuBtn = document.querySelector('.menu-btn');
+            if (window.innerWidth <= 768) {
+                if (!navbar.contains(event.target) && !menuBtn.contains(event.target)) {
+                    navbar.classList.remove('active');
+                }
+            }
+        });
+
+        // ===========================
         // THEME TOGGLE
         // ===========================
         function toggleTheme() {
@@ -2057,7 +2143,59 @@
         }
 
         // ===========================
-        // PRODUCT DATA - ALARM SYSTEMS CARD REMOVED
+        // LOGO LIGHTBOX (Click to Zoom)
+        // ===========================
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoImg = document.getElementById('headerLogo');
+            if (logoImg) {
+                logoImg.style.cursor = 'pointer';
+                // Allow clicking on the logo section to zoom
+                const logoSection = document.querySelector('.logo-section');
+                if (logoSection) {
+                    logoSection.addEventListener('click', function(e) {
+                        // Only open lightbox if clicking directly on the image or its wrapper
+                        if (e.target.closest('.logo-img-wrapper') || e.target.tagName === 'IMG') {
+                            openLightbox(logoImg.src, 'The Gee Technologies Logo');
+                        }
+                    });
+                }
+                // Also keep the image click separate
+                logoImg.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openLightbox(this.src, 'The Gee Technologies Logo');
+                });
+            }
+        });
+
+        // ===========================
+        // LIGHTBOX / IMAGE POPUP
+        // ===========================
+        function openLightbox(imageSrc, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxCaption = document.getElementById('lightboxCaption');
+
+            if (imageSrc && imageSrc !== 'null' && imageSrc !== '') {
+                lightboxImage.src = imageSrc;
+                lightboxCaption.textContent = caption || 'Image';
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // ===========================
+        // PRODUCT DATA
         // ===========================
         const products = [
             // Electric Fencing - Multiple Images
@@ -2147,7 +2285,6 @@
             { id: 13, name: "Optex BXShield Wireless", category: "Outdoor Detection", emoji: "🛡️", 
                 image: "https://i.ibb.co/21q4pcKr/Screenshot-2026-07-12-230453.png",
                 description: "Wireless outdoor shield detector with battery backup." },
-            // Alarm Systems - REMOVED this card
             // Wired Alarm Systems
             { id: 14, name: "Wired Alarm Systems", category: "Alarm Systems", emoji: "🔌", 
                 image: "https://i.ibb.co/nh31MbK/Screenshot-2026-07-12-232305.png",
@@ -2182,33 +2319,6 @@
                 description: "Professional callout service for all your security and gate motor needs." 
             }
         ];
-
-        // ===========================
-        // LIGHTBOX / IMAGE POPUP
-        // ===========================
-        function openLightbox(imageSrc, productName) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImage = document.getElementById('lightboxImage');
-            const lightboxCaption = document.getElementById('lightboxCaption');
-
-            if (imageSrc && imageSrc !== 'null' && imageSrc !== '') {
-                lightboxImage.src = imageSrc;
-                lightboxCaption.textContent = productName || 'Product Image';
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
-        });
 
         // ===========================
         // USER AUTHENTICATION
@@ -2493,7 +2603,6 @@
                     imageHtml = `<span style="font-size:60px;">${product.emoji}</span>`;
                 }
 
-                // Build thumbnails for products with multiple images
                 let thumbnailsHtml = '';
                 if (product.image2 || product.image3 || product.image4 || product.image5 || product.image6 || product.image7) {
                     const images = [product.image2, product.image3, product.image4, product.image5, product.image6, product.image7].filter(img => img && img !== '');
@@ -2586,6 +2695,13 @@
         }
         updateRatingDisplay();
         showPage('home');
+
+        // Close mobile menu on resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('navbar').classList.remove('active');
+            }
+        });
     </script>
 
 </body>
