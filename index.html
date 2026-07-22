@@ -800,7 +800,7 @@
             color: var(--text-secondary);
             line-height: 1.8;
             margin-bottom: 25px;
-            max-width: 500px;
+            max-width: 600px;
             transition: color 0.3s ease;
         }
 
@@ -1621,6 +1621,7 @@
             }
             .hero-content p {
                 margin: 0 auto 25px;
+                font-size: 16px;
             }
             .hero-content .tagline {
                 margin: 0 auto 30px;
@@ -1704,6 +1705,9 @@
             }
             .hero-content .tagline {
                 font-size: 16px;
+            }
+            .hero-content p {
+                font-size: 14px;
             }
             .btn-primary,
             .btn-secondary {
@@ -1854,7 +1858,7 @@
 
                 <div class="form-row">
                     <input type="email" id="quoteEmail" placeholder="Email Address" required>
-                    <input type="tel" id="quotePhone" placeholder="Phone Number">
+                    <input type="tel" id="quotePhone" placeholder="Phone Number" required>
                 </div>
 
                 <div class="form-row">
@@ -1896,8 +1900,8 @@
         <!-- HERO -->
         <section class="hero container">
             <div class="hero-content">
-                <h1>Secure Your World With <br><span class="highlight">The Gee Technologies</span></h1>
-                <p>We provide reliable electronic security solutions including CCTV surveillance, electric fencing, alarm systems, outdoor detection and access control.</p>
+                <h1>Smart Living. <br><span class="highlight">Absolute Security</span></h1>
+                <p>Welcome to the future of home and business management. At The Gee Technologies, we blend cutting-edge automation with rock-solid security to give you total control over your space. From intelligent CCTV and electric fencing to seamless gate and home automation, we design smarter spaces for a safer tomorrow.</p>
                 <p class="tagline"><i>Your all in one smart Home Automation</i></p>
                 <div class="hero-buttons">
                     <a href="#" onclick="showPage('products')" class="btn-primary">View Our Products</a>
@@ -2079,7 +2083,7 @@
             <div class="category-filter" id="categoryFilter">
                 <button class="active" data-category="all">All Products</button>
                 <button data-category="Alarm Systems">🔔 Alarm Systems</button>
-                <button data-category="Batteries">🔋 Batteries</button>
+                <button data-category="Batteries & Accessories">🔋 Batteries & Accessories</button>
                 <button data-category="Callout Fee">📞 Callout Fee</button>
                 <button data-category="Cameras">📷 Cameras</button>
                 <button data-category="Electric Fencing">⚡ Electric Fencing</button>
@@ -2256,51 +2260,68 @@
         });
 
         // ===========================
-        // PRODUCT DATA - ALPHABETICAL ORDER
+        // PRODUCT DATA
         // ===========================
         const products = [
-            // Batteries
+            // Alarm Systems
             { 
                 id: 1, 
-                name: "Batteries", 
-                category: "Batteries", 
+                name: "Alarm Systems", 
+                category: "Alarm Systems", 
+                emoji: "🔔", 
+                image: "https://i.ibb.co/7dh6HgR0/alarms1.jpg",
+                image2: "https://i.ibb.co/yLZKMzX/alarms2.jpg",
+                image3: "https://i.ibb.co/TBJ0gHP1/A1.jpg",
+                image4: "https://i.ibb.co/LXDkyJB0/A2.jpg",
+                description: "Professional alarm systems for homes and businesses.",
+                priceRange: "From R3,800",
+                quoteRequired: true
+            },
+            // Batteries & Accessories - NEW MERGED CARD
+            { 
+                id: 2, 
+                name: "Batteries & Accessories", 
+                category: "Batteries & Accessories", 
                 emoji: "🔋", 
-                image: "https://i.ibb.co/N2PFrg4V/Screenshot-2026-07-12-235107.png",
-                description: "Reliable batteries for your security and alarm systems.",
+                image: "https://i.ibb.co/LDrzT4Qr/BNA1.jpg",
+                image2: "https://i.ibb.co/V0rpCQnT/BNA2.jpg",
+                image3: "https://i.ibb.co/v6MwNwnr/BNA4.jpg",
+                image4: "https://i.ibb.co/7JRdCyzB/BNA3.jpg",
+                image5: "https://i.ibb.co/MyYZBdHR/BNA5.jpg",
+                image6: "https://i.ibb.co/jZqW9w9t/BNA6.jpg",
+                description: "Reliable batteries and accessories for your security and alarm systems.",
                 priceRange: null,
                 quoteRequired: false
             },
             // Callout Fee
             { 
-                id: 2, 
+                id: 3, 
                 name: "Callout Fee", 
                 category: "Callout Fee", 
                 emoji: "📞", 
                 image: "https://i.ibb.co/Zp1Wtj5R/Screenshot-2026-07-12-223413.png",
-                description: "Professional callout service for all your security and gate motor needs.",
+                description: "Professional Call-out fee for all your Security and Automation needs.",
                 priceRange: null,
                 quoteRequired: false
             },
-            // Cameras
+            // Cameras - Updated with new images
             { 
-                id: 3, 
+                id: 4, 
                 name: "Cameras", 
                 category: "Cameras", 
                 emoji: "📷", 
-                image: "https://i.ibb.co/S49rsMQR/Screenshot-2026-07-12-234341.png",
-                image2: "https://i.ibb.co/xSKsJwTf/Screenshot-2026-07-12-234357.png",
-                image3: "https://i.ibb.co/99dLGYnb/Screenshot-2026-07-12-234407.png",
-                image4: "https://i.ibb.co/XfNVgqCT/Screenshot-2026-07-12-234417.png",
-                image5: "https://i.ibb.co/9k6FshsC/Screenshot-2026-07-12-234427.png",
-                image6: "https://i.ibb.co/bMdm5Dr2/Screenshot-2026-07-12-234435.png",
-                image7: "https://i.ibb.co/W4RcSKXD/Screenshot-2026-07-12-234455.png",
+                image: "https://i.ibb.co/jkB1zZMf/C1.jpg",
+                image2: "https://i.ibb.co/KjFrR6Zr/C2.jpg",
+                image3: "https://i.ibb.co/kgCgm9nZ/C3.jpg",
+                image4: "https://i.ibb.co/KjddXr7M/C4.jpg",
+                image5: "https://i.ibb.co/Cpyy6Bd9/C5.jpg",
                 description: "Professional security cameras for comprehensive surveillance solutions.",
                 priceRange: null,
                 quoteRequired: false
             },
             // CCTV Camera
             { 
-                id: 4, 
+                id: 5, 
                 name: "CCTV Camera", 
                 category: "Cameras", 
                 emoji: "📹", 
@@ -2310,90 +2331,79 @@
                 priceRange: null,
                 quoteRequired: false
             },
-            // Electric Fencing
+            // Electric Fencing - Updated with new images
             { 
-                id: 5, 
+                id: 6, 
                 name: "Electric Fencing", 
                 category: "Electric Fencing", 
                 emoji: "⚡", 
-                image: "https://i.ibb.co/DDc3q6h0/Screenshot-2026-07-12-220154.png",
-                image2: "https://i.ibb.co/cXDWJ6mw/Screenshot-2026-07-12-220208.png",
-                image3: "https://i.ibb.co/4nFZn3Cb/Screenshot-2026-07-12-220221.png",
-                image4: "https://i.ibb.co/7N8CZdwL/Screenshot-2026-07-12-220239.png",
-                image5: "https://i.ibb.co/DPJVwRn0/Screenshot-2026-07-12-220252.png",
+                image: "https://i.ibb.co/jZqW9w9t/BNA6.jpg",
+                image2: "https://i.ibb.co/4ZgHXD2c/EF2.jpg",
+                image3: "https://i.ibb.co/wrb4QKR0/EF3.jpg",
                 description: "High quality electric fencing solutions for residential, commercial and industrial security.",
                 priceRange: null,
                 quoteRequired: false
             },
-            // Gate Motors
+            // Gate Motors - Updated with new images
             { 
-                id: 6, 
+                id: 7, 
                 name: "Gate Motors", 
                 category: "Gate Motors", 
                 emoji: "🚪", 
-                image: "https://i.ibb.co/SDnW82Wf/Screenshot-2026-07-12-222312.png",
-                image2: "https://i.ibb.co/2Y6rLk3Z/Screenshot-2026-07-12-222333.png",
-                image3: "https://i.ibb.co/jvFftMFg/Screenshot-2026-07-12-222342.png",
-                image4: "https://i.ibb.co/4nvpxfzv/Screenshot-2026-07-12-222412.png",
+                image: "https://i.ibb.co/nM31mt2J/G1.jpg",
+                image2: "https://i.ibb.co/q3X5q4Lk/G2.jpg",
+                image3: "https://i.ibb.co/qL8jQVt8/G3.jpg",
+                image4: "https://i.ibb.co/STMW5TH/G4.jpg",
                 description: "Reliable gate motor solutions for residential and commercial properties.",
                 priceRange: null,
                 quoteRequired: false
             },
             // Keypad XSeries Touch LCD
-            { id: 7, name: "Keypad XSeries Touch LCD", category: "Outdoor Detection", emoji: "🖥️", 
+            { id: 8, name: "Keypad XSeries Touch LCD", category: "Outdoor Detection", emoji: "🖥️", 
                 image: "https://i.ibb.co/yFRWGmJ5/Screenshot-2026-07-12-230126.png",
                 description: "Touch LCD keypad for alarm systems with advanced features.",
                 priceRange: null,
                 quoteRequired: false
             },
             // Optex Beam Hx40 High Mount
-            { id: 8, name: "Optex Beam Hx40 High Mount", category: "Outdoor Detection", emoji: "🔦", 
+            { id: 9, name: "Optex Beam Hx40 High Mount", category: "Outdoor Detection", emoji: "🔦", 
                 image: "https://i.ibb.co/HTZrywP7/number1.jpg",
                 description: "High mount outdoor beam sensor for perimeter detection.",
                 priceRange: null,
                 quoteRequired: false
             },
             // Optex BXShield Wireless
-            { id: 9, name: "Optex BXShield Wireless", category: "Outdoor Detection", emoji: "🛡️", 
+            { id: 10, name: "Optex BXShield Wireless", category: "Outdoor Detection", emoji: "🛡️", 
                 image: "https://i.ibb.co/21q4pcKr/Screenshot-2026-07-12-230453.png",
                 description: "Wireless outdoor shield detector with battery backup.",
                 priceRange: null,
                 quoteRequired: false
             },
             // Optex Outdoor 180° Wired
-            { id: 10, name: "Optex Outdoor 180° Wired", category: "Outdoor Detection", emoji: "📡", 
+            { id: 11, name: "Optex Outdoor 180° Wired", category: "Outdoor Detection", emoji: "📡", 
                 image: "https://i.ibb.co/ccQDCkQK/Screenshot-2026-07-12-233445.png",
                 description: "Professional outdoor motion detection sensor with 180° coverage.",
                 priceRange: null,
                 quoteRequired: false
             },
             // Optex Outdoor 180° Wireless
-            { id: 11, name: "Optex Outdoor 180° Wireless", category: "Outdoor Detection", emoji: "📶", 
+            { id: 12, name: "Optex Outdoor 180° Wireless", category: "Outdoor Detection", emoji: "📶", 
                 image: "https://i.ibb.co/Cs7DcYdT/Screenshot-2026-07-12-230811.png",
                 description: "Wireless outdoor 180° motion detector for easy installation.",
                 priceRange: null,
                 quoteRequired: false
             },
             // Optex Outdoor 90° Wired
-            { id: 12, name: "Optex Outdoor 90° Wired", category: "Outdoor Detection", emoji: "📡", 
+            { id: 13, name: "Optex Outdoor 90° Wired", category: "Outdoor Detection", emoji: "📡", 
                 image: "https://i.ibb.co/Cs7DcYdT/Screenshot-2026-07-12-230811.png",
                 description: "Wide angle wired outdoor detector with 90° coverage.",
                 priceRange: null,
                 quoteRequired: false
             },
             // Optex Shield Wired
-            { id: 13, name: "Optex Shield Wired", category: "Outdoor Detection", emoji: "🛡️", 
+            { id: 14, name: "Optex Shield Wired", category: "Outdoor Detection", emoji: "🛡️", 
                 image: "https://i.ibb.co/srL14zy/Screenshot-2026-07-12-230453.png",
                 description: "Wired outdoor shield detector with advanced motion sensing.",
-                priceRange: null,
-                quoteRequired: false
-            },
-            // Remotes
-            { id: 14, name: "Remotes", category: "Alarm Systems", emoji: "📱", 
-                image: "https://i.ibb.co/jPM42xss/Screenshot-2026-07-12-231047.png",
-                image2: "https://i.ibb.co/Z1YBn733/Screenshot-2026-07-12-231056.png",
-                image3: "https://i.ibb.co/0pW55hKd/Screenshot-2026-07-12-231107.png",
-                description: "Wireless alarm remote with panic button for easy arming/disarming.",
                 priceRange: null,
                 quoteRequired: false
             },
@@ -2423,7 +2433,7 @@
                 image4: "https://i.ibb.co/1GynR4Nd/4.jpg",
                 image5: "https://i.ibb.co/bMNBWBmL/5.jpg",
                 description: "Complete smart home automation solutions including integrated home control systems.",
-                priceRange: "From R6,000",
+                priceRange: "From R999",
                 quoteRequired: true
             },
             // Solar PTZ Camera
@@ -2607,7 +2617,7 @@
         });
 
         // ===========================
-        // QUOTE SYSTEM
+        // QUOTE SYSTEM - PHONE NUMBER NOW MANDATORY
         // ===========================
         function openQuoteModal(productName) {
             document.getElementById('quoteProductName').textContent = productName || 'General Inquiry';
@@ -2620,6 +2630,8 @@
             } else {
                 document.getElementById('quoteEmail').value = '';
             }
+            // Clear previous values
+            document.getElementById('quotePhone').value = '';
         }
 
         function closeQuoteModal() {
@@ -2635,8 +2647,24 @@
             const message = document.getElementById('quoteMessage').value.trim();
             const product = document.getElementById('quoteProductName').textContent;
 
-            if (!name || !email) {
-                alert('Please fill in your name and email address.');
+            if (!name) {
+                alert('Please fill in your name.');
+                return;
+            }
+
+            if (!email) {
+                alert('Please fill in your email address.');
+                return;
+            }
+
+            if (!email.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Phone number is now mandatory
+            if (!phone) {
+                alert('Please enter your phone number.');
                 return;
             }
 
@@ -2656,7 +2684,7 @@
                 `Product: ${product}\n` +
                 `Name: ${name}\n` +
                 `Email: ${email}\n` +
-                `Phone: ${phone || 'Not provided'}\n` +
+                `Phone: ${phone}\n` +
                 `Province: ${province}\n` +
                 `Town/City: ${town}\n\n` +
                 `Message:\n${message || 'No additional information provided.'}\n\n` +
