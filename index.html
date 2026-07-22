@@ -85,7 +85,6 @@
             transition: background 0.3s ease, color 0.3s ease;
         }
 
-        /* Scrollbar Styling */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -163,7 +162,6 @@
             opacity: var(--bg-opacity);
         }
 
-        /* Keep background at full opacity in both modes */
         [data-theme="light"] .home-page::before {
             opacity: 1;
         }
@@ -237,7 +235,6 @@
             min-height: 70px;
         }
 
-        /* ---- Logo Section - Full Height ---- */
         .logo-section {
             display: flex;
             align-items: stretch;
@@ -269,7 +266,6 @@
             padding: 4px 0;
         }
 
-        /* Fading blend effect on the right side only */
         .logo-img-wrapper::after {
             content: '';
             position: absolute;
@@ -292,7 +288,6 @@
             );
         }
 
-        /* Logo hover effect */
         .logo-section:hover .logo-img-wrapper img {
             transform: scale(1.02);
             filter: brightness(calc(var(--logo-brightness) + 0.1)) drop-shadow(0 4px 12px rgba(0,183,255,0.15));
@@ -686,7 +681,7 @@
         }
 
         /* ===========================
-           LIGHTBOX / IMAGE POPUP (for Logo)
+           LIGHTBOX / IMAGE POPUP
         =========================== */
         .lightbox {
             display: none;
@@ -1372,7 +1367,6 @@
             margin-bottom: 15px;
         }
 
-        /* Price Range Styling */
         .product-card .info .price-range {
             display: inline-block;
             background: var(--price-bg);
@@ -1784,7 +1778,6 @@
     =========================== -->
     <header>
         <div class="container">
-            <!-- Logo Section - Full Height ONLY (No Text) -->
             <div class="logo-section" onclick="showPage('home')" title="Click to go home">
                 <div class="logo-img-wrapper">
                     <img src="https://i.ibb.co/bMj5yhqb/logostraight.jpg" alt="The Gee Technologies Logo" id="headerLogo" />
@@ -1811,7 +1804,6 @@
                     </div>
                 </nav>
 
-                <!-- Theme Toggle Button -->
                 <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
                     <span class="sun-icon"><i class="fas fa-sun"></i></span>
                     <span class="moon-icon"><i class="fas fa-moon"></i></span>
@@ -2165,7 +2157,6 @@
             navbar.classList.toggle('active');
         }
 
-        // Close menu when clicking a nav link (on mobile)
         document.querySelectorAll('#navbar a').forEach(link => {
             link.addEventListener('click', function() {
                 const navbar = document.getElementById('navbar');
@@ -2175,7 +2166,6 @@
             });
         });
 
-        // Close menu when clicking outside (on mobile)
         document.addEventListener('click', function(event) {
             const navbar = document.getElementById('navbar');
             const menuBtn = document.querySelector('.menu-btn');
@@ -2197,7 +2187,6 @@
             localStorage.setItem('theme', newTheme);
         }
 
-        // Load saved theme
         function loadTheme() {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme) {
@@ -2214,17 +2203,14 @@
             const logoImg = document.getElementById('headerLogo');
             if (logoImg) {
                 logoImg.style.cursor = 'pointer';
-                // Allow clicking on the logo section to zoom
                 const logoSection = document.querySelector('.logo-section');
                 if (logoSection) {
                     logoSection.addEventListener('click', function(e) {
-                        // Only open lightbox if clicking directly on the image or its wrapper
                         if (e.target.closest('.logo-img-wrapper') || e.target.tagName === 'IMG') {
                             openLightbox(logoImg.src, 'The Gee Technologies Logo');
                         }
                     });
                 }
-                // Also keep the image click separate
                 logoImg.addEventListener('click', function(e) {
                     e.stopPropagation();
                     openLightbox(this.src, 'The Gee Technologies Logo');
@@ -2263,7 +2249,7 @@
         // PRODUCT DATA
         // ===========================
         const products = [
-            // Alarm Systems
+            // Alarm Systems - with price range
             { 
                 id: 1, 
                 name: "Alarm Systems", 
@@ -2277,7 +2263,7 @@
                 priceRange: "From R3,800",
                 quoteRequired: true
             },
-            // Batteries & Accessories - NEW MERGED CARD
+            // Batteries & Accessories - MERGED CARD
             { 
                 id: 2, 
                 name: "Batteries & Accessories", 
@@ -2289,6 +2275,10 @@
                 image4: "https://i.ibb.co/7JRdCyzB/BNA3.jpg",
                 image5: "https://i.ibb.co/MyYZBdHR/BNA5.jpg",
                 image6: "https://i.ibb.co/jZqW9w9t/BNA6.jpg",
+                image7: "https://i.ibb.co/jPM42xss/Screenshot-2026-07-12-231047.png",
+                image8: "https://i.ibb.co/Z1YBn733/Screenshot-2026-07-12-231056.png",
+                image9: "https://i.ibb.co/0pW55hKd/Screenshot-2026-07-12-231107.png",
+                image10: "https://i.ibb.co/N2PFrg4V/Screenshot-2026-07-12-235107.png",
                 description: "Reliable batteries and accessories for your security and alarm systems.",
                 priceRange: null,
                 quoteRequired: false
@@ -2304,17 +2294,16 @@
                 priceRange: null,
                 quoteRequired: false
             },
-            // Cameras - Updated with new images
+            // Cameras - FIRST IMAGE REMOVED (image: "https://i.ibb.co/jkB1zZMf/C1.jpg" removed)
             { 
                 id: 4, 
                 name: "Cameras", 
                 category: "Cameras", 
                 emoji: "📷", 
-                image: "https://i.ibb.co/jkB1zZMf/C1.jpg",
-                image2: "https://i.ibb.co/KjFrR6Zr/C2.jpg",
-                image3: "https://i.ibb.co/kgCgm9nZ/C3.jpg",
-                image4: "https://i.ibb.co/KjddXr7M/C4.jpg",
-                image5: "https://i.ibb.co/Cpyy6Bd9/C5.jpg",
+                image: "https://i.ibb.co/KjFrR6Zr/C2.jpg",
+                image2: "https://i.ibb.co/kgCgm9nZ/C3.jpg",
+                image3: "https://i.ibb.co/KjddXr7M/C4.jpg",
+                image4: "https://i.ibb.co/Cpyy6Bd9/C5.jpg",
                 description: "Professional security cameras for comprehensive surveillance solutions.",
                 priceRange: null,
                 quoteRequired: false
@@ -2331,7 +2320,7 @@
                 priceRange: null,
                 quoteRequired: false
             },
-            // Electric Fencing - Updated with new images
+            // Electric Fencing
             { 
                 id: 6, 
                 name: "Electric Fencing", 
@@ -2344,7 +2333,7 @@
                 priceRange: null,
                 quoteRequired: false
             },
-            // Gate Motors - Updated with new images
+            // Gate Motors
             { 
                 id: 7, 
                 name: "Gate Motors", 
@@ -2617,7 +2606,7 @@
         });
 
         // ===========================
-        // QUOTE SYSTEM - PHONE NUMBER NOW MANDATORY
+        // QUOTE SYSTEM - PHONE NUMBER MANDATORY
         // ===========================
         function openQuoteModal(productName) {
             document.getElementById('quoteProductName').textContent = productName || 'General Inquiry';
@@ -2630,7 +2619,6 @@
             } else {
                 document.getElementById('quoteEmail').value = '';
             }
-            // Clear previous values
             document.getElementById('quotePhone').value = '';
         }
 
@@ -2652,17 +2640,11 @@
                 return;
             }
 
-            if (!email) {
-                alert('Please fill in your email address.');
-                return;
-            }
-
-            if (!email.includes('@')) {
+            if (!email || !email.includes('@')) {
                 alert('Please enter a valid email address.');
                 return;
             }
 
-            // Phone number is now mandatory
             if (!phone) {
                 alert('Please enter your phone number.');
                 return;
@@ -2764,8 +2746,8 @@
                 }
 
                 let thumbnailsHtml = '';
-                if (product.image2 || product.image3 || product.image4 || product.image5 || product.image6 || product.image7) {
-                    const images = [product.image2, product.image3, product.image4, product.image5, product.image6, product.image7].filter(img => img && img !== '');
+                if (product.image2 || product.image3 || product.image4 || product.image5 || product.image6 || product.image7 || product.image8 || product.image9 || product.image10) {
+                    const images = [product.image2, product.image3, product.image4, product.image5, product.image6, product.image7, product.image8, product.image9, product.image10].filter(img => img && img !== '');
                     if (images.length > 0) {
                         thumbnailsHtml = `
                             <div class="thumbnails">
@@ -2777,7 +2759,6 @@
                     }
                 }
 
-                // Price Range and Quote Required indicators
                 let priceHtml = '';
                 if (product.priceRange) {
                     priceHtml = `<div class="price-range">💰 ${product.priceRange}</div>`;
@@ -2804,7 +2785,7 @@
                         </div>
                         ${thumbnailsHtml}
                         <button class="btn-quote" onclick="openQuoteModal('${product.name}')">
-                            ${product.quoteRequired ? 'Request Quote' : 'Request Quote'}
+                            Request Quote
                         </button>
                     </div>
                 `;
@@ -2869,7 +2850,6 @@
         updateRatingDisplay();
         showPage('home');
 
-        // Close mobile menu on resize
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768) {
                 document.getElementById('navbar').classList.remove('active');
